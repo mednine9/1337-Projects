@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 class Plant:
-    def __init__(self, name: str, height: int, age: int):
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
@@ -10,10 +10,11 @@ class Plant:
 
 
 if __name__ == "__main__":
-    roze = Plant("Rose", 25, 30)
-    sunflower = Plant("Sunflower", 80, 45)
-    cactus = Plant("Cactus", 15, 120)
+    plants = (
+        Plant("Rose", 25, 30),
+        Plant("Sunflower", 80, 45),
+        Plant("Cactus", 15, 120)
+    )
     print("=== Garden Plant Registry ===")
-    roze.display_info()
-    sunflower.display_info()
-    cactus.display_info()
+    for plant in plants:
+        plant.display_info()

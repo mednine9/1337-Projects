@@ -19,7 +19,7 @@ class Plant:
 
 
 class GardenManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self.plants: list[Plant] = []
         self.water_tank = 10
 
@@ -47,7 +47,7 @@ class GardenManager:
         finally:
             print("Closing watering system (cleanup)")
 
-    def plant_health(self):
+    def plant_health(self) -> None:
         for plant in self.plants:
             try:
                 if plant.water_level < 1:

@@ -1,4 +1,4 @@
-def check_temperature(temp_str):
+def check_temperature(temp_str: str) -> int:
     try:
         try:
             value = int(temp_str)
@@ -14,7 +14,7 @@ def check_temperature(temp_str):
         print(f"Error: {e}")
 
 
-def test_temperature_input():
+def test_temperature_input() -> None:
     print("=== Garden Temperature Checker ===\n")
     for test in ["25", "abc", "100", "-50"]:
         print(f"Testing temperature: {test}")

@@ -2,7 +2,7 @@
 class Plant:
     created_plants = 0
 
-    def __init__(self, name: str, height: int, age: int):
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
@@ -14,7 +14,7 @@ class Plant:
     def grow(self, amount: int = 1) -> None:
         self.height = self.height + amount
 
-    def aging(self, amount: int = 1) -> None:
+    def age(self, amount: int = 1) -> None:
         self.age = self.age + amount
 
 

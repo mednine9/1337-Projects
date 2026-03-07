@@ -1,5 +1,5 @@
 class Plant:
-    def __init__(self, name: str, height: int, age: int):
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
@@ -13,7 +13,7 @@ class Plant:
 
 
 class FloweringPlant(Plant):
-    def __init__(self, name: str, height: int, age: int, color: str):
+    def __init__(self, name: str, height: int, age: int, color: str) -> None:
         super().__init__(name, height, age)
         self.color = color
 
@@ -27,7 +27,7 @@ class FloweringPlant(Plant):
 
 class PrizeFlower(FloweringPlant):
     def __init__(self, name: str, height: int,
-                 age: int, color: str, prize_points: int):
+                 age: int, color: str, prize_points: int) -> None:
         super().__init__(name, height, age, color)
         self.prize_points = prize_points
 
@@ -37,7 +37,7 @@ class PrizeFlower(FloweringPlant):
 
 
 class Garden:
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self.name = name
         self.plants = []
         self.initial_heights = 0
@@ -113,33 +113,34 @@ class GardenManager:
 if __name__ == "__main__":
     print("=== Garden Management System Demo ===\n")
 
-    alice_garden = Garden("Alice")
-    bob_garden = Garden("Bob")
+    garden_managers = [
+        Garden("Alice"),
+        Garden("Bob")
+    ]
 
     oak = Plant("Oak Tree", 100, 20)
     rose = FloweringPlant("Rose", 25, 5, "red")
     sunflower = PrizeFlower("Sunflower", 50, 5, "yellow", 10)
+    GardenManager.add_plant(garden_managers[0], oak)
+    GardenManager.add_plant(garden_managers[0], rose)
+    GardenManager.add_plant(garden_managers[0], sunflower)
 
-    GardenManager.add_plant(alice_garden, oak)
-    GardenManager.add_plant(alice_garden, rose)
-    GardenManager.add_plant(alice_garden, sunflower)
+    GardenManager.grow_all(garden_managers[0])
 
-    GardenManager.grow_all(alice_garden)
-
-    print(f"\n=== {alice_garden.name}'s Garden Report ===")
+    print(f"\n=== {garden_managers[0].name}'s Garden Report ===")
     print("Plants in garden:")
-    for plant in alice_garden.plants:
+    for plant in garden_managers[0].plants:
         print(plant)
     print("")
 
     narcissus = PrizeFlower("Narcissus", 60, 20, "White", 22)
-    bob_garden.plants += [narcissus]
+    garden_managers[1].plants += [narcissus]
 
-    GardenManager.GardenStats.generate_report(alice_garden)
+    GardenManager.GardenStats.generate_report(garden_managers[0])
     print(f"\nHeight validation test: {GardenManager.validate_height(100)}")
 
-    alice_score = GardenManager.GardenStats.calculate_score(alice_garden)
-    bob_score = GardenManager.GardenStats.calculate_score(bob_garden)
+    alice_score = GardenManager.GardenStats.calculate_score(garden_managers[0])
+    bob_score = GardenManager.GardenStats.calculate_score(garden_managers[1])
     print(f"Garden scores - Alice: {alice_score}, Bob: {bob_score}")
 
-    GardenManager.create_garden_network([alice_garden, bob_garden])
+    GardenManager.create_garden_network([garden_managers[0], garden_managers[1]])
