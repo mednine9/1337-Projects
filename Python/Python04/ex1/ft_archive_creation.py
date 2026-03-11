@@ -1,4 +1,4 @@
-def main():
+def main() -> None:
     file = open("new_discovery.txt", "w")
 
     entry1 = "[ENTRY 001] New quantum algorithm discovered"
@@ -23,6 +23,7 @@ def main():
     file.write(entry3 + "\n")
 
     file.close()
+
 
 if __name__ == "__main__":
     main()
