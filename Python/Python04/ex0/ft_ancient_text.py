@@ -11,7 +11,7 @@ if __name__ == "__main__":
         print("-" * 50)
         print("RECOVERED DATA:")
 
-        print(data.strip())
+        print(data)
 
         print("-" * 50)
         print("Data recovery complete. Storage unit disconnected.")

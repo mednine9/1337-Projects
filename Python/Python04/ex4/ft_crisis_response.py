@@ -1,9 +1,10 @@
-def handle_archive_access(filename: str, access_type: str = "CRISIS ALERT") -> None:
+def handle_archive_access(filename: str,
+                          access_type: str = "CRISIS ALERT") -> None:
     print(f"{access_type}: Attempting access to '{filename}'...")
 
     try:
         with open(filename, "r") as file:
-            data = file.read().strip()
+            data = file.read()
 
         print(f"SUCCESS: Archive recovered - '{data}'")
         print("STATUS: Normal operations resumed")
