@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, List, Union, Dict
+from typing import Any, List, Union, Dict, Optional
 
 
 class DataProcessor(ABC):
@@ -66,6 +66,7 @@ class LogProcessor(DataProcessor):
 
 
 def main() -> None:
+    _dummy_type: Optional[Any] = None
     print("=== CODE NEXUS DATA PROCESSOR FOUNDATION ===\n")
 
     print("Initializing Numeric Processor...")

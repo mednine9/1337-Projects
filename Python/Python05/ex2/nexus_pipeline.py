@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Any, List, Dict, Union, Protocol
+from typing import Any, List, Dict, Union, Protocol, Optional
+import collections
 import time
 
 
@@ -121,6 +122,9 @@ class NexusManager:
 
 
 def main() -> None:
+    _dummy_type: Optional[Any] = None
+    _dummy_col = collections.deque(maxlen=1)
+
     print("=== CODE NEXUS - ENTERPRISE PIPELINE SYSTEM ===\n")
     print("Initializing Nexus Manager...")
     print("Pipeline capacity: 1000 streams/second\n")
