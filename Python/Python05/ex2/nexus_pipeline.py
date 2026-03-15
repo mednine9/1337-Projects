@@ -56,24 +56,26 @@ class ProcessingPipeline(ABC):
     def __init__(self, pipeline_id: str) -> None:
         self.pipeline_id = pipeline_id
         self.stages: List[ProcessingStage] = []
-        self.history: Dict[str, Any] = {
-            "InputStage": None, "TransformStage": None, "OutputStage": None}
+        self.history: collections.deque = collections.deque(maxlen=1000)
         self.metrics = {"processed": 0, "errors": 0, "total_time": 0.0}
-        self.error_logs: List[str] = []
+        self.error_logs: collections.deque = collections.deque(maxlen=100)
 
     def add_stage(self, stage: ProcessingStage) -> None:
         self.stages.append(stage)
 
-    def execute(self, data: Any) -> Any:
+    def execute(self, data: Any) -> Optional[Any]:
         start_time = time.time()
         current_data = data
+        run_history = {}
 
         try:
             for i, stage in enumerate(self.stages, 1):
                 stage_name = stage.__class__.__name__
                 current_data = stage.process(current_data)
-                self.history[stage_name] = current_data
+                run_history[stage_name] = current_data
 
+            self.history.append(run_history)
+            
             self.metrics["processed"] += 1
             self.metrics["total_time"] += (time.time() - start_time)
             return current_data
@@ -122,9 +124,6 @@ class NexusManager:
 
 
 def main() -> None:
-    _dummy_type: Optional[Any] = None
-    _dummy_col = collections.deque(maxlen=1)
-
     print("=== CODE NEXUS - ENTERPRISE PIPELINE SYSTEM ===\n")
     print("Initializing Nexus Manager...")
     print("Pipeline capacity: 1000 streams/second\n")

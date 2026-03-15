@@ -14,7 +14,6 @@ class DataProcessor(ABC):
     def format_output(self, result: str) -> str:
         return f"Output: {result}"
 
-
 class NumericProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
         if isinstance(data, (int, float)):
@@ -66,12 +65,11 @@ class LogProcessor(DataProcessor):
 
 
 def main() -> None:
-    _dummy_type: Optional[Any] = None
     print("=== CODE NEXUS DATA PROCESSOR FOUNDATION ===\n")
 
     print("Initializing Numeric Processor...")
     num_proc = NumericProcessor()
-    num_data: List[int] = [1, 2, 3, 4, 5]
+    num_data: Optional[List[int]] = [1, 2, 3, 4, 5]
     print(f"Processing data: {num_data}")
     if num_proc.validate(num_data):
         print("Validation: Numeric data verified")
@@ -80,7 +78,7 @@ def main() -> None:
 
     print("Initializing Text Processor...")
     text_proc = TextProcessor()
-    text_data: str = "Hello Nexus World"
+    text_data: Optional[str] = "Hello Nexus World"
     print(f"Processing data: \"{text_data}\"")
     if text_proc.validate(text_data):
         print("Validation: Text data verified")
@@ -89,7 +87,7 @@ def main() -> None:
 
     print("Initializing Log Processor...")
     log_proc = LogProcessor()
-    log_data: str = "ERROR: Connection timeout"
+    log_data: Optional[str] = "ERROR: Connection timeout"
     print(f"Processing data: \"{log_data}\"")
     if log_proc.validate(log_data):
         print("Validation: Log entry verified")
@@ -99,7 +97,7 @@ def main() -> None:
     print("=== Polymorphic Processing Demo ===")
     print("Processing multiple data types through same interface....")
 
-    test_cases: Dict[DataProcessor, Any] = {
+    test_cases: Dict[DataProcessor, Optional[Any]] = {
         NumericProcessor(): [1, 2, 3],
         TextProcessor(): "Code Nexus",
         LogProcessor(): "INFO: System ready"
