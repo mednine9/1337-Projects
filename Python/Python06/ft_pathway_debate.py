@@ -16,9 +16,11 @@ def main() -> None:
 
     print("\nTesting Package Access:")
     print(
-        f"alchemy.transmutation.lead_to_gold(): {alchemy.transmutation.lead_to_gold()}")
+        f"alchemy.transmutation.lead_to_gold(): "
+        f"{alchemy.transmutation.lead_to_gold()}")
     print(
-        f"alchemy.transmutation.philosophers_stone(): {alchemy.transmutation.philosophers_stone()}")
+        f"alchemy.transmutation.philosophers_stone(): "
+        f"{alchemy.transmutation.philosophers_stone()}")
 
     print("\nBoth pathways work! Absolute: clear, Relative: concise")
 

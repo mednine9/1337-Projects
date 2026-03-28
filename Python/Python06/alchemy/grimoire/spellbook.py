@@ -1,20 +1,19 @@
-import alchemy.grimoire as grimoire
-from alchemy.grimoire.validator import validate_ingredients
+# Method 1: Late Import
+def record_spell(spell_name: str, ingredients: str) -> str:
+    from .validator import validate_ingredients
+
+    validation_result = validate_ingredients(ingredients)
+    if "VALID" in validation_result:
+        return f"Spell recorded: {spell_name} ({validation_result})"
+    return f"Spell rejected: {spell_name} ({validation_result})"
 
 
-def main() -> None:
-    print("=== Circular Curse Breaking ===")
-
-    print("\nMethod 1: Testing late import technique:")
-    print(
-        f"record_spell(\"Lightning\", \"air\"): {grimoire.record_spell('Lightning', 'air')}")
-
-    print("\nMethod 2: Testing dependency injection technique:")
-    print(f"record_spell_injected(\"Earthquake\", \"earth\", validate_ingredients): "
-          f"{grimoire.spellbook.record_spell_injected('Earthquake', 'earth', validate_ingredients)}")
-
-    print("\nCircular dependency curse avoided using multiple techniques!")
-
-
-if __name__ == "__main__":
-    main()
+# Method 2: Dependency Injection
+def record_spell_injected(spell_name: str,
+                          ingredients: str, validator_func) -> str:
+    validation_result = validator_func(ingredients)
+    if "VALID" in validation_result:
+        return (f"Spell recorded via injection: "
+                f"{spell_name} ({validation_result})")
+    return (f"Spell rejected via injection: "
+            f"{spell_name} ({validation_result})")
