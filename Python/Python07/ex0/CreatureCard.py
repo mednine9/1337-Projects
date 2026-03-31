@@ -22,7 +22,7 @@ class CreatureCard(Card):
         
         if "battlefield" in game_state:
             game_state["battlefield"].append(self)
-            
+
         return {
             "card_played": self.name,
             "mana_used": self.cost,
