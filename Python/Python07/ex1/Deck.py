@@ -31,12 +31,15 @@ class Deck:
         total = len(self.cards)
         if total == 0:
             return {"error": "Empty deck"}
-            
-        creatures = sum(1 for c in self.cards if getattr(c, "card_type", "") == "Creature" or getattr(c, "type", "") == "Creature")
-        spells = sum(1 for c in self.cards if getattr(c, "card_type", "") == "Spell")
-        artifacts = sum(1 for c in self.cards if getattr(c, "card_type", "") == "Artifact")
+
+        creatures = sum(1 for c in self.cards if getattr(
+            c, "card_type", "") == "Creature" or getattr(c, "type", "") == "Creature")
+        spells = sum(1 for c in self.cards if getattr(
+            c, "card_type", "") == "Spell")
+        artifacts = sum(1 for c in self.cards if getattr(
+            c, "card_type", "") == "Artifact")
         avg_cost = sum(c.cost for c in self.cards) / total
-        
+
         return {
             "total_cards": total,
             "creatures": creatures,

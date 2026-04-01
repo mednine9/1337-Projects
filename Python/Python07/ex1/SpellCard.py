@@ -7,19 +7,20 @@ class SpellCard(Card):
         super().__init__(name, cost, rarity)
         valid_effects = {"damage", "heal", "buff", "debuff"}
         if effect_type not in valid_effects:
-            raise ValueError(f"Invalid effect type. Must be one of: {valid_effects}")
-            
+            raise ValueError(
+                f"Invalid effect type. Must be one of: {valid_effects}")
+
         self.effect_type = effect_type
         self.card_type = "Spell"
 
     def play(self, game_state: dict[str, Any]) -> dict[str, Any]:
         player = game_state.get("player", {})
-        
+
         if not self.is_playable(player.get("mana", 0)):
             return {"error": "Not enough mana"}
-            
+
         player["mana"] -= self.cost
-        
+
         return {
             "card_played": self.name,
             "mana_used": self.cost,
@@ -36,7 +37,7 @@ class SpellCard(Card):
                 target.attack += self.cost
             elif self.effect_type == "debuff" and hasattr(target, "attack"):
                 target.attack -= self.cost
-                
+
         return {
             "effect_resolved": self.effect_type,
             "amount": self.cost
