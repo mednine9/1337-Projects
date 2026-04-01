@@ -1,6 +1,7 @@
 from typing import Any
 from ex4.TournamentCard import TournamentCard
 
+
 class TournamentPlatform:
     def __init__(self) -> None:
         self.registered_cards: dict[str, TournamentCard] = {}
@@ -18,10 +19,12 @@ class TournamentPlatform:
             return {"error": "One or both cards not found"}
 
         self.matches_played += 1
-        
-        score1 = getattr(card1, 'attack_power', 0) + getattr(card1, 'health', 0)
-        score2 = getattr(card2, 'attack_power', 0) + getattr(card2, 'health', 0)
-        
+
+        score1 = getattr(card1, 'attack_power', 0) + \
+            getattr(card1, 'health', 0)
+        score2 = getattr(card2, 'attack_power', 0) + \
+            getattr(card2, 'health', 0)
+
         if score1 >= score2:
             winner = card1
             loser = card2
@@ -32,8 +35,8 @@ class TournamentPlatform:
         # Process the results
         winner.update_wins(1)
         loser.update_losses(1)
-        
-        winner.wins += 1 
+
+        winner.wins += 1
         loser.losses += 1
 
         return {

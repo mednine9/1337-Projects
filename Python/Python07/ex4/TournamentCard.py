@@ -6,12 +6,12 @@ from ex4.Rankable import Rankable
 
 class TournamentCard(Card, Combatable, Rankable):
     def __init__(
-        self, 
-        name: str, 
-        cost: int, 
-        rarity: str, 
-        attack: int, 
-        health: int, 
+        self,
+        name: str,
+        cost: int,
+        rarity: str,
+        attack: int,
+        health: int,
         card_id: str,
         initial_rating: int = 1000
     ) -> None:
@@ -19,7 +19,7 @@ class TournamentCard(Card, Combatable, Rankable):
         self.attack_power = attack
         self.health = health
         self.card_id = card_id
-        
+
         # Rankable stats
         self.rating = initial_rating
         self.wins = 0
@@ -49,7 +49,7 @@ class TournamentCard(Card, Combatable, Rankable):
         self.wins += wins
         self.rating = self.calculate_rating()
         # Reset tracker so we don't double-count previous wins in the calculation
-        self.wins = 0 
+        self.wins = 0
 
     def update_losses(self, losses: int) -> None:
         self.losses += losses
@@ -58,7 +58,7 @@ class TournamentCard(Card, Combatable, Rankable):
 
     def get_rank_info(self) -> dict[str, Any]:
         return {
-            "rating": self.rating, 
+            "rating": self.rating,
             "record": f"{self.wins}-{self.losses}"
         }
 

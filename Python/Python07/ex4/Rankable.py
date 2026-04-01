@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
+
 class Rankable(ABC):
     @abstractmethod
     def calculate_rating(self) -> int:

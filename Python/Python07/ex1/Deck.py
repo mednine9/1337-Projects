@@ -33,7 +33,8 @@ class Deck:
             return {"error": "Empty deck"}
 
         creatures = sum(1 for c in self.cards if getattr(
-            c, "card_type", "") == "Creature" or getattr(c, "type", "") == "Creature")
+            c, "card_type", "") == "Creature" or 
+                        getattr(c, "type", "") == "Creature")
         spells = sum(1 for c in self.cards if getattr(
             c, "card_type", "") == "Spell")
         artifacts = sum(1 for c in self.cards if getattr(
